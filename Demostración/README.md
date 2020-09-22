@@ -12,19 +12,19 @@
 ### Operaciones utilizadas
 AND OR  NOT XOR
 
-##Como solucionaste el problema
+## Como solucionaste el problema
 En el lenguaje Rust existen los operadores lógicos. 
 AND = &&
 OR = ||
 NOT = !
 XOR =  ^
 
-##Explicación del código
+##  Explicación del código
 
     let booleanos: [bool;2] =[false,true];
 Se define un arreglo con dos booleanos utilizando la sintaxis de Rust
 
-###Tabla de AND
+### Tabla de AND
 
     println!("x\ty\tx or y");
     println!("{:-<22}", ""); 
@@ -36,7 +36,8 @@ Se define un arreglo con dos booleanos utilizando la sintaxis de Rust
 
 Primero se imprimen los títulos de la tabla. En la segunda línea se utiliza un "truco" de Rust que permite imprimir un carácter varias veces.
 Se uilizan dos ciclos for anidados para recorrer los valores del arreglo en sus distintas combinaciones.
-###Tabla de OR
+
+### Tabla de OR
 
     println!("\nx\ty\tx and y");
     println!("{:-<22}", ""); 
@@ -46,7 +47,7 @@ Se uilizan dos ciclos for anidados para recorrer los valores del arreglo en sus 
         }
     }
 
-###Tabla de NOT
+### Tabla de NOT
 
     println!("\nx\tnot x");
     println!("{:-<13}", ""); 
@@ -55,7 +56,7 @@ Se uilizan dos ciclos for anidados para recorrer los valores del arreglo en sus 
         
     }
 
-###Tabla de XOR
+### Tabla de XOR
 
     println!("\nx\ty\tx ^ y");
     println!("{:-<22}", ""); 
@@ -65,7 +66,7 @@ Se uilizan dos ciclos for anidados para recorrer los valores del arreglo en sus 
         }
     }
 
-##Problemas al programar
+## Problemas al programar
 En rust los arreglos deben definirse como en el siguiente ejemplo:
     
     let booleanos: [bool;2] =[false,true];
