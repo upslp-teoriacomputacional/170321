@@ -8,7 +8,7 @@
  *  Matricula: 170321
  *  
  *  Escrito:       05/10/2020
- *  Ultima actualización:  05/10/2020
+ *  Ultima actualización:  06/10/2020
  *----------------------------------------------------------------------*/
 
 use std::process;
@@ -18,12 +18,13 @@ use std::str;
     //Definimos la funcion caracter 
     fn caracter(character: char) -> i32 {
         let mut Fin: char = '\0';
-        //comparamos si es digito o operador
+        //comparamos si es digito u operador
 
         if character.is_digit(10){
 				return 0;            
         }
         else{
+		//Comproueba si es un operador valido
             if character=='-'||character=='/'||character=='+'||character=='*' {
                 return 1;
                 }
@@ -32,7 +33,6 @@ use std::str;
                     return 2;
                 }
             }
-        					println!("mirame cabron yame cargo la chingada {} caracter",character);
 
             //si no es ni un digito ni un operador entonces es un caracter no validp
             println!("Error el caracter: {} no es valido", character);
@@ -112,14 +112,14 @@ fn main(){
         contenido(estadosig,character,&simbolo,estado);
     }
  
-    //si el estado es 3 es una cadena de aceptacion
+    //si el estado es 65 es una cadena de aceptacion
     if estado==65{
         println!("|     {}      |         |Fin Cadena |               |",estado);
         body();
         println!("|                Cadena Valida                       |
     +----------------------------------------------------+");
     }
-   //al concluir si el estado no es 3 que es el de aceptacion imprimimos cadena no valida    
+   //al concluir si el estado no es 65 que es el de aceptacion imprimimos cadena no valida    
     if estado!=65{
             println!("|              Cadena No Valida :(                   |
     +----------------------------------------------------+");
