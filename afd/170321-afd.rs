@@ -17,7 +17,7 @@ use std::str;
 
     //Definimos la funcion caracter 
     fn caracter(character: char) -> i32 {
-        let mut Fin: char = '\0';
+        let mut Fin: char = '\n';
         //comparamos si es digito u operador
 
         if character.is_digit(10){
@@ -48,7 +48,7 @@ use std::str;
     
     //definimos la funcion contenido donde guarda cada valor despues de encontrarlo en un ciclo
     fn contenido(estadosig: i32,character: char,simbolo: &str,estado: i32){
-            if character=='\0'{
+            if character=='\n'{  //Comprueba si no es el salto de linea
             println!("|    {}    |        |   {}   |     {}      |",estadosig,simbolo,estado);
 			}else{
 				 println!("|    {}    |    {}    |   {}   |     {}      |",estadosig,character,simbolo,estado);
