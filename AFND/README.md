@@ -8,11 +8,12 @@
  - Juan Carlos González Ibarra
  
 ## Objetivos
-1.  Desarrollar un automata finito que valide la entrada de datos en el siguiente formato: n operacion n
+1.  Desarrollar un AFND que valide la entrada de datos en el siguiente formato: a*ba*
 
 ## Como solucionaste el problema
 Utilicé un array bidimensional para crear la tabla de estados. 
-Para las comparaciones en la función caracter, tuve que utilizar operadores lógicos.
+Para las comparaciones en la función caracter tuve que utilizar operadores lógicos.
+Realicé cambios en la tabla anterior para que pueda validar este formato.
 ### Librerias 
     use std::process;
     use std::io;
@@ -20,29 +21,30 @@ Para las comparaciones en la función caracter, tuve que utilizar operadores ló
 ### Función para comprobar caracteres
  
     //Definimos la funcion caracter 
-        fn caracter(character: char) -> i32 {
-            let mut Fin: char = '\n';
-            //comparamos si es digito u operador
+    fn caracter(character: char) -> i32 {
+        let mut Fin: char = '\n';
+        let mut a: char = 'a';
+        let mut b: char = 'b';
+	
+	    //Compara con los caracteres esperados
+        if character==a{
+				return 0;            
+        }
+        else{
+            if character==b {
+                return 2;
+                }
+            else{
+		if character == Fin {
+                    return 1;
+                }
+            }
 
-           if character.is_digit(10){
-           return 0;            
-           }
-           else{
-          //Comproueba si es un operador valido
-               if character=='-'||character=='/'||character=='+'||character=='*' {
-                   return 1;
-                   }
-               else{
-           if character == '\n' {
-                       return 2;
-                   }
-               }
-
-               //si no es ni un digito ni un operador entonces es un caracter no validp
-               println!("Error el caracter: {} no es valido", character);
-               process::exit(1);
-           }
-       }
+            //si no es ninguno de los valores esperados, no es válido.
+            println!("Error el caracter: {} no es valido", character);
+            process::exit(1);
+        }
+    }
 ### Funciones para imprimir la tabla en la consola
      //definimos al la funcion  encabezado
     fn encabezado(){
@@ -66,83 +68,89 @@ Para las comparaciones en la función caracter, tuve que utilizar operadores ló
     }
 ### Función main
        //MAIN
-    fn main(){
-        let mut  simbolo: String = "".to_string();
-        let mut  Fin: String = "".to_string();
+fn main(){
+    let mut  simbolo: String = "".to_string();
+    let mut  Fin: String = "".to_string();
+    
+    //Este es la tabla de transiciones del automata AFND creado
+    let tabla= [[0,4,1],[2,3,4],[2,3,4]];
+      
+    let mut estado: i32 = 0;
+    let mut aux: i32 = 0;
+    
+    println!("+-------------------------------------+
+    |    Ingrese una cadena a evaluar:    |
+    +-------------------------------------+");
+    
+    //Lectura de datos
+    let mut cadena = String::new();		
+    io::stdin().read_line(&mut cadena);
+    body();
+    encabezado();
+    let mut estadosig: i32;
 
-        //Este es la tabla de transiciones del automata AFD creado
-        let tabla= [[1,69,69],[69,2,69],[3,69,69],[69,69,65]];
+    //ciclo para recorrer la cadena
+    for  character in cadena.chars(){
+        //Para contar los caracteres recorridos
+        aux=aux+1;
 
-        let mut estado: i32 = 0;
+        //llamamos al metodo para saber si es un caracter valido y el valor retornado se guarda en charcaracter
+        let mut charcaracter= caracter(character);
 
-        println!("+-------------------------------------+
-        |    Ingrese una cadena a evaluar:    |
-        +-------------------------------------+");
+        //guardamos en estado el valor obtenido en la tabla segun las cordenadas que recibio anteriormente
+        estado=tabla[estado as usize][charcaracter as usize];
+        estadosig=estado+1;
+        if charcaracter == 0{
+      	    simbolo = "a*".to_string();
+            if estado==1 {estadosig=1}; //Corrige un error en la impresión de la tabla
+      	}
+      	else if charcaracter == 1{
+      	    simbolo = "b".to_string();
+      	}
+      	else if charcaracter == 2{
+      	    simbolo = "Fin".to_string();
 
-        //Lectura de datos
-        let mut cadena = String::new();		
-        io::stdin().read_line(&mut cadena);
-        body();
-        encabezado();
-
-        //ciclo para recorrer la cadena
-        for  character in cadena.chars(){
-            let mut estadosig: i32 =estado;
-
-            //llamamos al metodo para saber si es un caracter valido y el valor retornado se guarda en charcaracter
-            let mut charcaracter= caracter(character);
-
-            if charcaracter == 0{
-               simbolo = "Digito".to_string();
-           }
-           else if charcaracter == 1{
-               simbolo = "Operador".to_string();
-           }
-           else if charcaracter == 2{
-               simbolo = "Fin".to_string();
-           }
-
-            //guardamos en estado el valor obtenido en la tabla segun las cordenadas que recibio anteriormente
-            estado=tabla[estado as usize][charcaracter as usize];
-
-            //Si el valor obtenido es una E imprimimos cadena no valida
-            if estado==69{
-                println!("|    {}    |  {}    | Error |     {}      |",estadosig,character,estado);
-                body();
-                println!("|              Cadena No Valida :(                   |
-        +----------------------------------------------------+");
-                process::exit(1);
-            }
-            contenido(estadosig,character,&simbolo,estado);
+      	}
+      	
+    
+        //Si el valor obtenido es un estado no valido, imprimimos cadena no valida
+        if estado==4{
+            println!("|    {}    |  {}    | Error |     {}      |",estadosig,character,estado);
+            body();
+            println!("|              Cadena No Valida :(                   |
+    +----------------------------------------------------+");
+            process::exit(1);
         }
-
-        //si el estado es 65 es una cadena de aceptacion
-        if estado==65{
+        //si el estado es 3 y se ha llegado al final de la cadena, es una cadena de aceptacion
+        if (estado==3) && aux as usize==cadena.chars().count(){
             println!("|     {}      |         |Fin Cadena |               |",estado);
             body();
             println!("|                Cadena Valida                       |
         +----------------------------------------------------+");
+            process::exit(1);
+
         }
-       //al concluir si el estado no es 65 que es el de aceptacion imprimimos cadena no valida    
-        if estado!=65{
-                println!("|              Cadena No Valida :(                   |
-        +----------------------------------------------------+");
-        }
+        //si no es fin de cadena y el estado es 3, lo hace 2 para continuar correctamente 
+        if estado==3 {estado=2}
+        
+        contenido(estado,character,&simbolo,estadosig);
+    }
+ 
     }
  ## Problemas y soluciones al programar
  No encontré como utilizar variables globales, así que tuve que definir la variable dependiendo de lo que devolviera la función caracter.
     
-    //llamamos al metodo para saber si es un caracter valido y el valor retornado se guarda en charcaracter
-        let mut charcaracter= caracter(character);
-        
+    //llamamos al metodo para saber si es a* o b
         if charcaracter == 0{
-      	    simbolo = "Digito".to_string();
+      	    simbolo = "a*".to_string();
+            if estado==1 {estadosig=1}; //Corrige un error en la impresión de la tabla
       	}
       	else if charcaracter == 1{
-      	    simbolo = "Operador".to_string();
+      	    simbolo = "b".to_string();
       	}
       	else if charcaracter == 2{
       	    simbolo = "Fin".to_string();
+
       	}
 En una de los if en la función caracter (donde se comprueba el final de la cadena) cambie el "" por "\n", porque de otro modo no lo aceptaba.
     
@@ -160,6 +168,11 @@ Para imprimir la tabla correctamente, tuve que emplear un if para que verifique 
 			}
 			body();
     }
-El arreglo debe contener valores del mismo tipo, asi que cambie las letras por sus valores en ascii
+El arreglo debe contener valores del mismo tipo, asi que utilicé solamente numeros
 
-    let tabla= [[1,69,69],[69,2,69],[3,69,69],[69,69,65]];
+    //Este es la tabla de transiciones del automata AFND creado
+    let tabla= [[0,4,1],[2,3,4],[2,3,4]];
+En rust se obtiene la extensión de la cadena con una función que devuelve un vaor usize, por eso realicé una conversión en este if
+	
+	//si el estado es 3 y se ha llegado al final de la cadena, es una cadena de aceptacion
+        if (estado==3) && aux as usize==cadena.chars().count(){
