@@ -90,12 +90,13 @@ fn main(){
         //Para contar los caracteres recorridos
         aux=aux+1;
 
-        //llamamos al metodo para saber si es un caracter valido y el valor retornado se guarda en charcaracter
         let mut charcaracter= caracter(character);
 
         //guardamos en estado el valor obtenido en la tabla segun las cordenadas que recibio anteriormente
         estado=tabla[estado as usize][charcaracter as usize];
         estadosig=estado+1;
+	 
+	//llamamos al metodo para saber si es a* o b
         if charcaracter == 0{
       	    simbolo = "a*".to_string();
             if estado==1 {estadosig=1}; //Corrige un error en la impresión de la tabla
