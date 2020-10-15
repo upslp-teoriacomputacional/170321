@@ -1,3 +1,15 @@
+/* ----------------------------------------------------------------------
+ *  Universidad Politecnica de San Luis Potosí
+ *  Ingeniería en Tecnologías de Información
+ *
+ *  Materia: Teoría Computacional
+ *  Profesor: Juan Carlos González Ibarra
+ *  Nombre:    Benjamín Loredo Amaya
+ *  Matricula: 170321
+ *  
+ *  Escrito:       15/10/2020
+ *  Ultima actualización:  15/10/2020
+ *----------------------------------------------------------------------*/
 
 use std::process;
 use std::io;
