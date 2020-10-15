@@ -21,23 +21,22 @@ use std::str;
         let mut Fin: char = '\n';
         let mut a: char = 'a';
         let mut b: char = 'b';
-        //comparamos si es digito u operador
-
+	
+	    //Compara con los caracteres esperados
         if character==a{
 				return 0;            
         }
         else{
-		//Comproueba si es un operador valido
             if character==b {
                 return 2;
                 }
             else{
-				if character == Fin {
+		if character == Fin {
                     return 1;
                 }
             }
 
-            //si no es ni un digito ni un operador entonces es un caracter no validp
+            //si no es ninguno de los valores esperados, no es válido.
             println!("Error el caracter: {} no es valido", character);
             process::exit(1);
         }
@@ -99,7 +98,7 @@ fn main(){
         estadosig=estado+1;
         if charcaracter == 0{
       	    simbolo = "a*".to_string();
-            if estado==1 {estadosig=1};
+            if estado==1 {estadosig=1}; //Corrige un error en la impresión de la tabla
       	}
       	else if charcaracter == 1{
       	    simbolo = "b".to_string();
@@ -127,7 +126,7 @@ fn main(){
             process::exit(1);
 
         }
-        //si no es fin de cadena y el estado es 3, lo hace 2 para continuar
+        //si no es fin de cadena y el estado es 3, lo hace 2 para continuar correctamente 
         if estado==3 {estado=2}
         
         contenido(estado,character,&simbolo,estadosig);
