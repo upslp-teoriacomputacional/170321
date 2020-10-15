@@ -68,7 +68,7 @@ Realicé cambios en la tabla anterior para que pueda validar este formato.
     }
 ### Función main
        //MAIN
-fn main(){
+	fn main(){
     let mut  simbolo: String = "".to_string();
     let mut  Fin: String = "".to_string();
     
