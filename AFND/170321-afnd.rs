@@ -8,7 +8,7 @@
  *  Matricula: 170321
  *  
  *  Escrito:       15/10/2020
- *  Ultima actualización:  15/10/2020
+ *  Ultima actualización:  16/10/2020
  *----------------------------------------------------------------------*/
 
 use std::process;
@@ -99,7 +99,6 @@ fn main(){
 	//llamamos al metodo para saber si es a* o b
         if charcaracter == 0{
       	    simbolo = "a*".to_string();
-            if estado==1 {estadosig=1}; //Corrige un error en la impresión de la tabla
       	}
       	else if charcaracter == 1{
       	    simbolo = "b".to_string();
