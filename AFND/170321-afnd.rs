@@ -100,10 +100,10 @@ fn main(){
         if charcaracter == 0{
       	    simbolo = "a*".to_string();
       	}
-      	else if charcaracter == 1{
+      	else if charcaracter == 2{
       	    simbolo = "b".to_string();
       	}
-      	else if charcaracter == 2{
+      	else if charcaracter == 1{
       	    simbolo = "Fin".to_string();
 
       	}
