@@ -22,7 +22,7 @@ for word in "int result = 1;".split(" "){ // turning source code into list of wo
     
     // This will check if a token has datatype decleration
     if (*word) == *"str" || *word == *"int" || *word == *"bool" {
-        //tokens.insert(["DATATYPE", word])
+        tokens.insert(["DATATYPE", word]);
     }
     // This will look for an identifier which would be just a word
     else {
@@ -43,7 +43,6 @@ for word in "int result = 1;".split(" "){ // turning source code into list of wo
         else{
           if word.chars().next().unwrap().is_digit(10){
             if word.chars().nth(word.len()- 1 as usize).unwrap() == ';'{
-              //let x1 = word.chars().next().unwrap().to_string();
               let x="1";
               tokens.insert(["INTEGER",&x]);
               let y= ";";
