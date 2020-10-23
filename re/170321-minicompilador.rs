@@ -1,3 +1,16 @@
+/* ----------------------------------------------------------------------
+ *  Universidad Politecnica de San Luis Potosí
+ *  Ingeniería en Tecnologías de Información
+ *
+ *  Materia: Teoría Computacional
+ *  Profesor: Juan Carlos González Ibarra
+ *  Nombre:    Benjamín Loredo Amaya
+ *  Matricula: 170321
+ *  
+ *  Escrito:       22/10/2020
+ *  Ultima actualización:  23/10/2020
+ *----------------------------------------------------------------------*/
+
 use std::collections::HashSet;
 
 fn main() {
