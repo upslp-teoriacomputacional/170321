@@ -63,7 +63,8 @@ Utilicé un HasSet para almacenar las palabras.
     println!("{:?}",tokens); // Outputs the token array
     }
 
-##Problemas al programar
+
+## Problemas al programar
 La sentencia if que verifica si el caracter es ; resultó en algo un tanto largo.
 
     if word.chars().nth(word.len()- 1 as usize).unwrap() == ';'
