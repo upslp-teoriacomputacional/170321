@@ -1,5 +1,17 @@
+/* ----------------------------------------------------------------------
+ *  Universidad Politecnica de San Luis Potosí
+ *  Ingeniería en Tecnologías de Información
+ *
+ *  Materia: Teoría Computacional
+ *  Profesor: Juan Carlos González Ibarra
+ *  Nombre:    Benjamín Loredo Amaya
+ *  Matricula: 170321
+ *  
+ *  Escrito:       04/11/2020
+ *  Ultima actualización:  06/10/2020
+ *----------------------------------------------------------------------*/
+
 use std::io;
-//use std::str;
 use std::process;
 struct Stack<T> {
   stack: Vec<T>,
@@ -77,7 +89,7 @@ fn main() {
     }
   }
 
-  //Verifica que la cadena no este vac�a
+  //Verifica que la cadena no este vacía
   if stack.is_empty(){
     
     println!("La cadena esta vacia");
@@ -109,7 +121,7 @@ fn main() {
       }   
     }
 
-    //Si esta en el estado de aceptaci�n al terminar la ejecuci�n
+    //Si esta en el estado de aceptación al terminar la ejecución
     if estado==0{
         println!("|     {}      |         |Fin Cadena |               |",estado);
         body();
@@ -117,7 +129,7 @@ fn main() {
     +----------------------------------------------------+");
     }
 
-    //Si no esta en el estado de aceptaci�n
+    //Si no esta en el estado de aceptación
     if estado!=0{
             println!("|              Cadena No Valida :(                   |
     +----------------------------------------------------+");
